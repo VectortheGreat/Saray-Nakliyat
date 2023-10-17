@@ -10,7 +10,7 @@ const UserReviewCard = ({ card }) => {
     }).isRequired,
   };
   return (
-    <div className="bg-gray-800 p-4 rounded-lg shadow-md w-1/3 my-3">
+    <div className="bg-gray-800 p-4 rounded-lg shadow-md my-3 w-5/6 mx-auto">
       <div className="flex items-center">
         <img
           src={

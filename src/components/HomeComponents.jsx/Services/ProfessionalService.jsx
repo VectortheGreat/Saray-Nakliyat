@@ -65,16 +65,6 @@ const ProfessionalService = () => {
       link: "https://www.youtube.com",
     },
   ];
-
-  const chunkArray = (arr, chunkSize) => {
-    const chunkedArray = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      chunkedArray.push(arr.slice(i, i + chunkSize));
-    }
-    return chunkedArray;
-  };
-
-  const cardGroups = chunkArray(cards, 2);
   return (
     <section>
       <div className="text-center space-y-4">
@@ -84,30 +74,25 @@ const ProfessionalService = () => {
           hizmetlerinde en iyi tecrübeye ve donanıma sahiptir.
         </p>
       </div>
-      {cardGroups.map((group, groupIndex) => (
-        <div
-          key={groupIndex}
-          className="flex justify-center gap-4 cursor-pointer"
-        >
-          {group.map((card, cardIndex) => (
-            <div
-              key={cardIndex}
-              className="w-2/3 rounded overflow-hidden shadow-lg bg-gray-800 flex text-white my-3"
-            >
-              <img
-                src={card.imageUrl}
-                alt="image"
-                className="w-1/2 object-cover"
-                style={{ width: "100px", height: "100%", objectFit: "cover" }}
-              />
-              <div className="p-4 w-1/2">
-                <div className="font-bold text-base mb-2">{card.name}</div>
-                <p className="text-sm">{card.description}</p>
-              </div>
+      <div className="grid grid-cols-2 gap-3 my-3">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className="w-full rounded overflow-hidden shadow-lg bg-gray-800 flex text-white my-3"
+          >
+            <img
+              src={card.imageUrl}
+              alt="image"
+              className="w-1/2 object-cover"
+              style={{ width: "100px", height: "100%", objectFit: "cover" }}
+            />
+            <div className="p-4 w-1/2">
+              <div className="font-bold text-base mb-2">{card.name}</div>
+              <p className="text-sm">{card.description}</p>
             </div>
-          ))}
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

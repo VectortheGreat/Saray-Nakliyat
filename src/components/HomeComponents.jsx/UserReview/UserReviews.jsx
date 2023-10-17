@@ -23,7 +23,7 @@ const UserReviews = () => {
       description:
         "Gayet güzel bir taşma oldu benim için. Açıkçası bu kadar zor bir işin bu kadar özenli yapılması son derece güzel. Ben çok memnun kaldım.",
       gender: "male",
-      date: "6 Şubat 2023",
+      date: "6 Ocak 2023",
       score: 5,
     },
     {
@@ -35,16 +35,6 @@ const UserReviews = () => {
       score: 4,
     },
   ];
-
-  const chunkArray = (arr, chunkSize) => {
-    const chunkedArray = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      chunkedArray.push(arr.slice(i, i + chunkSize));
-    }
-    return chunkedArray;
-  };
-
-  const cardGroups = chunkArray(cards, 2);
   return (
     <section>
       <div className="text-center space-y-4">
@@ -54,13 +44,11 @@ const UserReviews = () => {
           inceleyin.
         </p>
       </div>
-      {cardGroups.map((group, groupIndex) => (
-        <div key={groupIndex} className="flex justify-center gap-4">
-          {group.map((card, cardIndex) => (
-            <UserReviewCard card={card} key={cardIndex}></UserReviewCard>
-          ))}
-        </div>
-      ))}
+      <div className="grid grid-cols-2 gap-3 my-3">
+        {cards.map((card, index) => (
+          <UserReviewCard card={card} key={index}></UserReviewCard>
+        ))}
+      </div>
     </section>
   );
 };
