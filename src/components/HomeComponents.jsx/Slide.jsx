@@ -29,7 +29,7 @@ const Slide = () => {
   ));
 
   return (
-    <div>
+    <div className="">
       <Slider {...settings}>{sliderItems}</Slider>
     </div>
   );
