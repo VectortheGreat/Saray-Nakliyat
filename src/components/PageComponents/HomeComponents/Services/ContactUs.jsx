@@ -39,7 +39,7 @@ const ContactUs = () => {
         </p>
       </div>
       <div className="flex justify-center gap-4">
-        {cards.map((x, index) => (
+        {cards?.map((x, index) => (
           <div
             key={index}
             className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 text-center"

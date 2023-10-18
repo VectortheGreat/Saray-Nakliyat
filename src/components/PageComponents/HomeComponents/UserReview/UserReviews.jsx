@@ -45,7 +45,7 @@ const UserReviews = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-3 my-3">
-        {cards.map((card, index) => (
+        {cards?.map((card, index) => (
           <UserReviewCard card={card} key={index}></UserReviewCard>
         ))}
       </div>

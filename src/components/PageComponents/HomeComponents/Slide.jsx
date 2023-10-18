@@ -16,7 +16,7 @@ const Slide = () => {
     "https://images.unsplash.com/photo-1574169207511-e21a21c8075a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1pYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80",
   ];
 
-  const sliderItems = images.map((image, index) => (
+  const sliderItems = images?.map((image, index) => (
     <div key={index}>
       <div
         style={{

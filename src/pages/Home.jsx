@@ -1,8 +1,8 @@
-import IlceHizmetleri from "../components/HomeComponents.jsx/IlceHizmetleri";
-import PraticalTransportationInfos from "../components/HomeComponents.jsx/PraticalTransportationInfos";
-import Services from "../components/HomeComponents.jsx/Services/Services";
-import Slide from "../components/HomeComponents.jsx/Slide";
-import UserReviews from "../components/HomeComponents.jsx/UserReview/UserReviews";
+import IlceHizmetleri from "../components/PageComponents/HomeComponents/IlceHizmetleri";
+import Services from "../components/PageComponents/HomeComponents/Services/Services";
+import Slide from "../components/PageComponents/HomeComponents/Slide";
+import UserReviews from "../components/PageComponents/HomeComponents/UserReview/UserReviews";
+import PraticalTransportationInfos from "../components/PageComponents/HomeComponents/PraticalTransportationInfos";
 const Home = () => {
   return (
     <div className="container mx-auto text-white space-y-5">

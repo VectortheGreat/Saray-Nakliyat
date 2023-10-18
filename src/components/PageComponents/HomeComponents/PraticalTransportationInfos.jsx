@@ -54,7 +54,7 @@ const PraticalTransportationInfos = () => {
         </p>
       </div>
       <div className="grid grid-cols-3 gap-3 my-3">
-        {cards.map((x, index) => (
+        {cards?.map((x, index) => (
           <div
             key={index}
             className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-gray-800 text-center"

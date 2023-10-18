@@ -75,7 +75,7 @@ const ProfessionalService = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-3 my-3">
-        {cards.map((card, index) => (
+        {cards?.map((card, index) => (
           <div
             key={index}
             className="w-full rounded overflow-hidden shadow-lg bg-gray-800 flex text-white my-3"

@@ -41,7 +41,7 @@ const IlceHizmetleri = () => {
           sunmaktayız.
         </p>
         <div className="grid grid-cols-2 gap-3">
-          {ilceler.map((ilce, index) => (
+          {ilceler?.map((ilce, index) => (
             <a
               key={index}
               href={ilce.url}

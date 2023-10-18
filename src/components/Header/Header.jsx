@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -11,7 +14,7 @@ const Header = () => {
           <button
             className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
             onClick={() => {
-              console.log("Button 1 clicked");
+              navigate("/");
             }}
           >
             Anasayfa
@@ -19,7 +22,7 @@ const Header = () => {
           <button
             className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
             onClick={() => {
-              console.log("Button 2 clicked");
+              navigate("/hakkimizda");
             }}
           >
             Hakkımızda
@@ -27,7 +30,7 @@ const Header = () => {
           <button
             className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
             onClick={() => {
-              console.log("Button 3 clicked");
+              navigate("/hizmetlerimiz");
             }}
           >
             Hizmetlerimiz
@@ -35,15 +38,7 @@ const Header = () => {
           <button
             className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
             onClick={() => {
-              console.log("Button 3 clicked");
-            }}
-          >
-            Hizmetlerimiz
-          </button>
-          <button
-            className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
-            onClick={() => {
-              console.log("Button 3 clicked");
+              navigate("/iletisim");
             }}
           >
             İletişim
