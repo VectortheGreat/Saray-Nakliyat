@@ -25,11 +25,11 @@ const IlceHizmetleri = () => {
   ];
 
   return (
-    <article className="flex justify-between">
+    <article className="md:flex justify-between">
       <img
         src="https://gungornakliyat.com/wp-content/uploads/2022/03/ambarlilimaninakliye.jpg"
         alt=""
-        className="h-52 mx-auto"
+        className="h-52 mx-auto md:mr-4"
       />
       <div className="space-y-3">
         <h1 className="text-center text-3xl">
@@ -40,7 +40,7 @@ const IlceHizmetleri = () => {
           sunmaktayız. Ayrıca 81 ilimize şehirler arası nakliye hizmeti
           sunmaktayız.
         </p>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {ilceler?.map((ilce, index) => (
             <a
               key={index}

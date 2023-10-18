@@ -47,13 +47,13 @@ const PraticalTransportationInfos = () => {
     <article>
       <div className="text-center space-y-4">
         <h1 className="text-4xl">Pratik Taşınma Bilgileri</h1>
-        <p className="text-lg w-3/4 mx-auto">
+        <p className="text-lg w-full lg:w-3/4 xl:w-3/4 2xl:w-3/4 mx-auto">
           Ev yada ofisinizin taşınmasına hazır mısınız? Nakliye uzmanlarınca
           hazırlanan yazılarımızı inceleyerek taşınma öncesi tecrübe sahibi
           olun.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-3 my-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-3 my-3">
         {cards?.map((x, index) => (
           <div
             key={index}

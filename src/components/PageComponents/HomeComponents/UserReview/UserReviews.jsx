@@ -44,7 +44,7 @@ const UserReviews = () => {
           inceleyin.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-3 my-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-3 my-3">
         {cards?.map((card, index) => (
           <UserReviewCard card={card} key={index}></UserReviewCard>
         ))}

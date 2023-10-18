@@ -69,12 +69,12 @@ const ProfessionalService = () => {
     <section>
       <div className="text-center space-y-4">
         <h1 className="text-4xl">Profesyonel Hizmet!</h1>
-        <p className="text-lg w-3/4 mx-auto">
+        <p className="text-lg w-full lg:w-3/4 xl:w-3/4 2xl:w-3/4 mx-auto">
           İster eviniz ister ofisiniz taşınsın, firmamız tüm taşımacılık
           hizmetlerinde en iyi tecrübeye ve donanıma sahiptir.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-3 my-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-3 my-3">
         {cards?.map((card, index) => (
           <div
             key={index}
@@ -86,8 +86,8 @@ const ProfessionalService = () => {
               className="w-1/2 object-cover"
               style={{ width: "100px", height: "100%", objectFit: "cover" }}
             />
-            <div className="p-4 w-1/2">
-              <div className="font-bold text-base mb-2">{card.name}</div>
+            <div className="p-4 w-full ">
+              <h2 className="font-bold text-base mb-2">{card.name}</h2>
               <p className="text-sm">{card.description}</p>
             </div>
           </div>
