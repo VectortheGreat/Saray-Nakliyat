@@ -42,12 +42,12 @@ const ProfessionalPackaging = () => {
         {cards?.map((card, index) => (
           <div
             key={index}
-            className="w-full rounded overflow-hidden shadow-lg bg-gray-800 flex text-white my-3"
+            className="w-full rounded shadow-lg bg-gray-800 flex text-white my-3"
           >
             <img
               src={card.imageUrl}
               alt="image"
-              className="w-1/2 h-full object-cover"
+              className="h-full object-cover"
             />
             <div className="p-4 w-full">
               <h2 className="font-bold text-base mb-2">{card.name}</h2>

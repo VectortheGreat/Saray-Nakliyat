@@ -9,16 +9,37 @@ import CopyRight from "./components/Footer/CopyRight";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import Admin from "./pages/Admin";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { authInfo } from "./redux/authSlice";
+import { authFBConfig } from "./config/config";
 
 function App() {
+  const auth = authFBConfig;
+  const authInfoPayload = {
+    app: {
+      name: auth.app.name,
+    },
+    currentUser: auth.currentUser,
+  };
+  console.log(authInfoPayload);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authInfo(authInfoPayload));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/hakkimizda" element={<About />} />
         <Route path="/hizmetlerimiz" element={<Service />} />
         <Route path="/iletisim" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer></Footer>
       <CopyRight></CopyRight>

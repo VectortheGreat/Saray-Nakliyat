@@ -5,42 +5,42 @@ const PraticalTransportationInfos = () => {
       description:
         "Taşınma gününden önce paketlenmesi gereken eşyalar hakkında daha detaylı bilgi almak için tıklayınız.",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-1.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-6.jpg",
     },
     {
       name: "Tasarruf Sağlayacak Fikirler",
       description:
         "Taşınma sırasında tasarruf sağlayacak bilgiler almak için tıklayınız",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-2.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-5.jpg",
     },
     {
       name: "En Çok Gerekli Aletler",
       description:
         "Taşınma sırasında sizin işinize çok gerekli olacak aletler hakkında bilgi almak için tıklayınız.",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-3.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-4.jpg",
     },
     {
       name: "Kırılacak Eşyalar Nasıl Paketlenir?",
       description:
         "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-4.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-3.jpg",
     },
     {
       name: "Kırılacak Eşyalar Nasıl Paketlenir?",
       description:
         "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-4.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-2.jpg",
     },
     {
       name: "Kırılacak Eşyalar Nasıl Paketlenir?",
       description:
         "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
       imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/paketleme/paket-4.png",
+        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-1.jpg",
     },
   ];
   return (

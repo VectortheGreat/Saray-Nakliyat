@@ -72,13 +72,13 @@ const Footer = () => {
   ];
   return (
     <footer className="bg-gray-800 text-white p-8 flex flex-wrap justify-center mt-3">
-      <div className="w-full md:w-1/4 lg:w-1/5 text-center">
+      <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
         <img
           src="https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/logo.png"
           alt="Saray Nakliyat Logo"
-          className="p-2 cursor-pointer"
+          className="p-2 cursor-pointer mx-auto"
         />
-        <p className="text-sm">
+        <p className="text-sm text-center">
           Tek bir araçla çıktığımız bu yolda ilkelerimiz ve prensiplerimiz
           sayesine Türkiye’nin en büyük sermayeli sayılı nakliye firmaları
           arasında olmanın gururunu yaşıyoruz. Şu ana kadar gerçekleştirdiğimiz
@@ -86,7 +86,7 @@ const Footer = () => {
           gibi tam zamanlı ve kusursuz hizmet sunduk.
         </p>
       </div>
-      <div className="w-full md:w-1/4 lg:w-1/5 text-center">
+      <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
         <h1 className="text-xl font-bold text-pink-600">Hizmetlerimiz</h1>
         <ul className="text-m">
           {cards?.map((x, index) => (
@@ -96,7 +96,7 @@ const Footer = () => {
           ))}
         </ul>
       </div>
-      <div className="w-full md:w-1/4 lg:w-1/5 text-center">
+      <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
         <h1 className="text-xl font-bold text-pink-600">Bağlantılar</h1>
         <ul className="text-m">
           <li>
@@ -116,9 +116,9 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <div className="w-full md:w-1/4 lg:w-1/5 text-center">
+      <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center">
         <h1 className="text-xl font-bold text-pink-600">İletişim</h1>
-        <ul className="text-m ">
+        <ul className="text-m">
           <li>
             <a href="/adres">Adres</a>
           </li>
