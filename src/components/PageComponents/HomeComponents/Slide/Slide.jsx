@@ -15,7 +15,7 @@ const Slide = () => {
   return (
     <div className="mx-auto px-4">
       <SimpleImageSlider
-        width={800}
+        width={300}
         height={400}
         images={images}
         showBullets={true}
@@ -28,6 +28,10 @@ const Slide = () => {
         navMargin={30}
         slideDuration={0.5}
       />
+      <h1 className="text-center text-2xl my-3 text-rose-600">
+        Slider'ın Boyutu tekrardan düzeltilecektir..
+      </h1>
+      <hr />
     </div>
   );
 };

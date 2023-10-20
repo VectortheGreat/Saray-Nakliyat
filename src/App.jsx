@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import CopyRight from "./components/Footer/CopyRight";
+import BlogDetail from "./components/PageComponents/BlogComponents/BlogDetailPage/BlogDetail";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
@@ -35,11 +36,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
         <Route path="/hakkimizda" element={<About />} />
         <Route path="/hizmetlerimiz" element={<Service />} />
         <Route path="/iletisim" element={<Contact />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/1" element={<BlogDetail />} />
       </Routes>
       <Footer></Footer>
       <CopyRight></CopyRight>

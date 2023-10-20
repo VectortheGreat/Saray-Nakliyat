@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 const AboutComp = () => {
   return (
-    <section className="space-y-3 mt-3">
-      <article className="flex space-x-3">
+    <section className="space-y-3 mt-3 px-5">
+      <article className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
         <div className="space-y-3">
           <h1 className="text-3xl">Biz Kimiz?</h1>
           <p>
-            Kuruluşu 2000’li yıllara dayanan firmamız, "Kardelen Evden Eve
+            Kuruluşu 2000’li yıllara dayanan firmamız, "Saray Evden Eve
             Nakliyat" olarak faaliyete geçtik. Bu sektörde sizler için
             çalışmakta olan, yeniliklere açık, disiplinle tam zamanlı olarak
             çalışma, kaliteli hizmet, müşteri memnuniyetini prensip edinmiş bir
@@ -29,13 +29,15 @@ const AboutComp = () => {
         <img
           src="https://gungornakliyat.com/wp-content/uploads/2022/03/ambarlilimaninakliye.jpg"
           alt="resim"
+          className="w-full md:w-1/2"
         />
       </article>
-      <hr />
-      <article className="flex space-x-3">
+      <hr className="my-3" />
+      <article className="flex flex-col-reverse md:flex-row space-y-3 md:space-y-0 md:space-x-3">
         <img
           src="https://gungornakliyat.com/wp-content/uploads/2022/03/ambarlilimaninakliye.jpg"
           alt="resim"
+          className="w-full md:w-1/2"
         />
         <div className="space-y-3">
           <h1 className="text-3xl">Size Garanti Veriyoruz!</h1>
@@ -55,12 +57,12 @@ const AboutComp = () => {
           </ul>
         </div>
       </article>
-      <hr></hr>
-      <article className="flex space-x-3">
+      <hr className="my-3" />
+      <article className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
         <div className="space-y-3">
           <h1 className="text-3xl">Misyonumuz / Vizyonumuz</h1>
           <p>
-            Kardelen Nakliyat, şu ana kadar var olma misyonumuzu,
+            KaSarayrdelen Nakliyat, şu ana kadar var olma misyonumuzu,
             müşterilerimizin nakliye sektöründeki ihtiyaçlarını karşılamak
             adına, bu alanda en iyi hizmeti sizlere sunabilmektir. Bununla
             birlikte sektördeki ihtiyaçları karşılamaya çalışarak misyonumuz
@@ -86,6 +88,7 @@ const AboutComp = () => {
         <img
           src="https://gungornakliyat.com/wp-content/uploads/2022/03/ambarlilimaninakliye.jpg"
           alt="resim"
+          className="w-full md:w-1/2"
         />
       </article>
     </section>

@@ -74,7 +74,7 @@ const Footer = () => {
     <footer className="bg-gray-800 text-white p-8 flex flex-wrap justify-center mt-3">
       <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
         <img
-          src="https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/logo.png"
+          src="https://i.imgur.com/F18rZYw.png"
           alt="Saray Nakliyat Logo"
           className="p-2 cursor-pointer mx-auto"
         />

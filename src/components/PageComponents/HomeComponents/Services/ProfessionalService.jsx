@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const ProfessionalService = () => {
+  const navigate = useNavigate();
   const cards = [
     {
       name: "Evden Eve Nakliyat",
@@ -86,7 +89,12 @@ const ProfessionalService = () => {
               className="w-1/2 object-cover"
               style={{ width: "100px", height: "100%", objectFit: "cover" }}
             />
-            <div className="p-4 w-full ">
+            <div
+              className="p-4 w-full cursor-pointer"
+              onClick={() => {
+                navigate("/blog/1");
+              }}
+            >
               <h2 className="font-bold text-base mb-2">{card.name}</h2>
               <p className="text-sm">{card.description}</p>
             </div>

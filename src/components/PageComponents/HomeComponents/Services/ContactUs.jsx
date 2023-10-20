@@ -44,13 +44,13 @@ const ContactUs = () => {
             key={index}
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4"
           >
-            <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 text-center">
+            <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-800 text-center flex flex-col h-full">
               <img
                 src={x.imageUrl}
                 alt="image"
                 className="w-full h-40 object-cover"
               />
-              <div className="px-6 py-4">
+              <div className="px-6 py-4 flex-1">
                 <div className="font-bold text-xl mb-2">{x.name}</div>
                 <p className="text-base">{x.description}</p>
               </div>

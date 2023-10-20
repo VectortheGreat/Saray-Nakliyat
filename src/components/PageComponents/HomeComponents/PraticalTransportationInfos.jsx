@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const PraticalTransportationInfos = () => {
+  const navigate = useNavigate();
   const cards = [
     {
       name: "Paketlenmemesi Gereken Eşyalar",
@@ -65,7 +68,12 @@ const PraticalTransportationInfos = () => {
               className="w-full"
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
             />
-            <div className="px-6 py-4">
+            <div
+              className="px-6 py-4 cursor-pointer"
+              onClick={() => {
+                navigate("/blog/1");
+              }}
+            >
               <div className="font-bold text-xl mb-2">{x.name}</div>
               <p className="text-base">{x.description}</p>
             </div>

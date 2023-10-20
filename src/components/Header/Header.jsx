@@ -17,9 +17,12 @@ const Header = () => {
     <header className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between flex-wrap items-center">
         <img
-          src="https://kardelennakliyat.com.tr/wp-content/themes/tema/assets/img/logo.png"
+          src="https://i.imgur.com/F18rZYw.png"
           alt="Saray Nakliyat Logo"
           className="p-2 cursor-pointer"
+          onClick={() => {
+            navigate("/");
+          }}
         />
         <button onClick={toggleMenu} className="block md:hidden text-white p-2">
           <svg
@@ -40,7 +43,7 @@ const Header = () => {
         <nav
           className={`${
             menuOpen ? "block" : "hidden"
-          } md:block space-x-4 md:space-x-10 mt-4 md:mt-0`}
+          } md:block space-x-4 md:space-x-10 mt-4 md:mt-0 text-center`}
         >
           <button
             className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
@@ -62,6 +65,17 @@ const Header = () => {
             <span className="flex items-center space-x-1">
               <IoIosPeople></IoIosPeople>
               <p>Hakkımızda</p>
+            </span>
+          </button>
+          <button
+            className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
+            onClick={() => {
+              navigate("/blog");
+            }}
+          >
+            <span className="flex items-center space-x-1">
+              <IoIosPeople></IoIosPeople>
+              <p>Blog</p>
             </span>
           </button>
           <button

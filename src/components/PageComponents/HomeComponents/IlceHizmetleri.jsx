@@ -4,28 +4,28 @@ const IlceHizmetleri = () => {
   const ilceler = [
     {
       name: "Develi",
-      url: "https://www.youtube.com",
+      url: "#",
     },
     {
       name: "Yahyalı",
-      url: "https://www.youtube.com",
+      url: "#",
     },
     {
       name: "Melikgazi",
-      url: "https://www.youtube.com",
+      url: "#",
     },
     {
       name: "Kocasinan",
-      url: "https://www.youtube.com",
+      url: "#",
     },
     {
       name: "Talas",
-      url: "https://www.youtube.com",
+      url: "#",
     },
   ];
 
   return (
-    <article className="md:flex justify-between">
+    <article className="md:flex justify-between md:space-y-0 space-y-3">
       <img
         src="https://gungornakliyat.com/wp-content/uploads/2022/03/ambarlilimaninakliye.jpg"
         alt=""
