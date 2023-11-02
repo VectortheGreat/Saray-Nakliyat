@@ -1,75 +1,29 @@
+import { useState } from "react";
 import {
   BiLogoFacebookSquare,
   BiLogoTwitter,
   BiLogoInstagramAlt,
 } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { getDatas } from "../../config/config";
+import { useEffect } from "react";
 const Footer = () => {
-  const cards = [
-    {
-      name: "Evden Eve Nakliyat",
-      description:
-        "Yılların vermiş olduğu tecrübemiz ile evinizi profesyonelce sigortalı olara taşıyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Ofis Taşıma",
-      description:
-        "Ofis ve büro taşımacılığında tüm eşyalarınızı özenle paketleyip sorunsuz hizmet sunuyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Asansörlü Nakliyat",
-      description:
-        "Katınız kaçınca kat olursa olsun, son teknoloji modüler asansörümüz ile asansörlü evinizi taşıyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Parça Eşya Taşıma",
-      description:
-        "Taşınacak bir kaç parça eşyanız mı var ? En uygun fiyatlara, zamanında teslimat garantisi ile hizmet alın.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Eşya Depolama",
-      description:
-        "Eşyalarınızı güvende tutacak yer mi arıyorsunuz ? Sigortalı 7/24 kameralı depolarımız hizmetinize hazır.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Şehir İçi Nakliye",
-      description:
-        "Taşıma türü ne olursa olsun, şehir içi taşımacılık isteğinize profesyonelce nakliye hizmeti veriyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Şehirler Arası Nakliye",
-      description:
-        "Şehirler arası nakliyede garantili, zamanında teslimat ve uygun fiyat ile hizmet sunuyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Ücretsiz Ekspertiz",
-      description:
-        "Taşınacak eşyalarınızı yerinde inceleyip, en iyi hizmeti vermek için ücretsiz ekspertiz hizmetimi ile kapınızdayız.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-  ];
+  const [serviceData, setServiceData] = useState(null);
+  const [contactData, setContactData] = useState(null);
+  const navigate = useNavigate();
+  async function fetchDatas() {
+    try {
+      const servicedatas = await getDatas("ProfessionalService");
+      const contactDatas = await getDatas("ContactUs");
+      setServiceData(servicedatas);
+      setContactData(contactDatas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
   return (
     <footer className="bg-gray-800 text-white p-8 flex flex-wrap justify-center mt-3">
       <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
@@ -77,6 +31,9 @@ const Footer = () => {
           src="https://i.imgur.com/F18rZYw.png"
           alt="Saray Nakliyat Logo"
           className="p-2 cursor-pointer mx-auto"
+          onClick={() => {
+            navigate("/");
+          }}
         />
         <p className="text-sm text-center">
           Tek bir araçla çıktığımız bu yolda ilkelerimiz ve prensiplerimiz
@@ -89,9 +46,14 @@ const Footer = () => {
       <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center mb-6">
         <h1 className="text-xl font-bold text-pink-600">Hizmetlerimiz</h1>
         <ul className="text-m">
-          {cards?.map((x, index) => (
+          {serviceData?.map((x, index) => (
             <li key={index}>
-              <a href={x.link}>{x.name}</a>
+              <button
+                className="hover:text-pink-600"
+                onClick={() => navigate(`/${x.slug}`)}
+              >
+                {x.name}
+              </button>
             </li>
           ))}
         </ul>
@@ -100,41 +62,81 @@ const Footer = () => {
         <h1 className="text-xl font-bold text-pink-600">Bağlantılar</h1>
         <ul className="text-m">
           <li>
-            <a href="/">Anasayfa</a>
+            <a className="hover:text-pink-600" href="/">
+              Anasayfa
+            </a>
           </li>
           <li>
-            <a href="/hakkimizda">Hakkımızda</a>
+            <a className="hover:text-pink-600" href="/hakkimizda">
+              Hakkımızda
+            </a>
           </li>
           <li>
-            <a href="/hizmetlerimiz">Hizmetlerimiz</a>
+            <a className="hover:text-pink-600" href="/hizmetlerimiz">
+              Hizmetlerimiz
+            </a>
           </li>
           <li>
-            <a href="/blog">Blog</a>
+            <a className="hover:text-pink-600" href="/blog">
+              Blog
+            </a>
           </li>
           <li>
-            <a href="/iletisim">İletişim</a>
+            <a className="hover:text-pink-600" href="/iletisim">
+              İletişim
+            </a>
           </li>
         </ul>
       </div>
       <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/5 text-center">
         <h1 className="text-xl font-bold text-pink-600">İletişim</h1>
         <ul className="text-m">
-          <li>
-            <a href="/adres">Adres</a>
-          </li>
-          <li>
-            <a href="/eposta">E-Posta</a>
-          </li>
-          <li>
-            <a href="/telefon">Telefon</a>
-          </li>
+          {contactData?.map((x, index) => (
+            <li key={index}>
+              {index === 0 || index === 1 ? (
+                <a
+                  href={x.buttonLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-pink-600"
+                >
+                  {x.shortname}
+                </a>
+              ) : (
+                <button
+                  className="hover:text-pink-600"
+                  onClick={() => navigate(x.buttonLink)}
+                >
+                  {x.shortname}
+                </button>
+              )}
+            </li>
+          ))}
         </ul>
         <div className="text-xl font-bold">
           <h1 className="text-pink-600">Sosyal Medya Hesaplarımız: </h1>
           <div className="flex items-center justify-center space-x-2">
-            <BiLogoFacebookSquare className="text-blue-500 cursor-pointer hover:text-pink-600" />
-            <BiLogoTwitter className="text-blue-500 cursor-pointer hover:text-pink-600" />
-            <BiLogoInstagramAlt className="text-blue-500 cursor-pointer hover:text-pink-600" />
+            <a
+              href="https://www.facebook.com/profile.php?id=100065451281480&locale=nb_NO&paipv=0&eav=AfbPtUiuPgdEja7n1BZnE2euhLMrE4tWKNMPpSLPBEfmA34DQqTQFmfhghDu2n_fbY8"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BiLogoFacebookSquare className="text-blue-500 cursor-pointer hover:text-pink-600" />
+            </a>
+            <a
+              href="https://www.instagram.com/saraynakliyat/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BiLogoInstagramAlt className="text-blue-500 cursor-pointer hover:text-pink-600" />
+            </a>
+            <a
+              href="https://twitter.com/saraynakliyat"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BiLogoTwitter className="text-blue-500 cursor-pointer hover:text-pink-600" />
+            </a>
           </div>
         </div>
       </div>

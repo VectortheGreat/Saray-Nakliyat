@@ -1,32 +1,45 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDatas } from "../../../config/config";
+import { useEffect } from "react";
 
 const BlogComp = () => {
+  const [datas, setDatas] = useState(null);
+
   const navigate = useNavigate();
+  async function fetchDatas() {
+    try {
+      const fetchedDatas = await getDatas();
+      const combinedDatas = [...fetchedDatas[1], ...fetchedDatas[3]];
+      setDatas(combinedDatas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  console.log("Veriler: ", datas);
+  useEffect(() => {
+    fetchDatas();
+  }, []);
   return (
-    <div>
-      <h1 className="text-center text-2xl my-3">Blog</h1>
-      <div className="grid grid-cols-1 mx-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-        <div className="col-span-1 md:col-span-2 lg:col-span-1 xl:col-span-2 space-y-3">
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <img
-              className="rounded-t-lg"
-              src="https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/evden-eve-nakliyat.jpg"
-              alt=""
-            />
-            <div className="p-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mx-3">
+      {datas?.map((e, i) => (
+        <div
+          className="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 h-full space-y-3"
+          key={i}
+        >
+          <div className="max-w-sm bg-white h-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <img className="rounded-t-lg h-64 w-full" src={e.imageUrl} alt="" />
+            <div className="p-5 h-full">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Evden Eve Nakliyat
+                {e.name}
               </h5>
 
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Atasayar Nakliyat ekibi olarak, müşterilerimizle birlikte
-                taşımacılık işlemi için kararlaştırdığımız randevu gününde
-                eksperlerimiz evinize gelerek yada Whatsapp ile yolladığınız
-                resimleri inceleyerek gerekli olan incelemelerini yapar.
+                {e.description}
               </p>
               <button
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={() => navigate("1")}
+                onClick={() => navigate(`/${e.slug}`)}
               >
                 Detay için tıklayınız
                 <svg
@@ -42,7 +55,7 @@ const BlogComp = () => {
             </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

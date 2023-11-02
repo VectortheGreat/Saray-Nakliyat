@@ -1,33 +1,22 @@
+import { useState } from "react";
+import { getDatas } from "../../../../config/config";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const ContactUs = () => {
-  const cards = [
-    {
-      name: "Whatsapp Destek",
-      description:
-        "WhatsApp üzerinden firmamıza eşya resmi göndererek anında fiyat alabilirsiniz.",
-      buttonName: "0533 333 33 33",
-      buttonLink: "https://www.youtube.com",
-      imageUrl:
-        "https://trthaberstatic.cdn.wp.trt.com.tr/resimler/1490000/whatsapp-aa-1490025.jpg",
-    },
-    {
-      name: "Teklif Formu",
-      description:
-        "Teklif formunu doldurarak firmamızdan hızlıca fiyat alabilirsiniz.",
-      buttonName: "Teklif Formu",
-      buttonLink: "https://www.youtube.com",
-      imageUrl:
-        "https://images.hindustantimes.com/tech/rf/image_size_960x540/HT/p2/2017/02/28/Pictures/_8fcc5b2c-fd95-11e6-a3af-7fa15638f741.jpg",
-    },
-    {
-      name: "Ofis Adresimiz",
-      description:
-        "Ofisimizi ziyaret ederek yüz yüze görüşme sağlayabilirsiniz.",
-      buttonName: "Harita Konumu",
-      buttonLink: "https://www.youtube.com",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-    },
-  ];
+  const navigate = useNavigate();
+  const [data, setData] = useState(null);
+  async function fetchDatas() {
+    try {
+      const datas = await getDatas("ContactUs");
+      setData(datas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
 
   return (
     <section className="py-10">
@@ -39,7 +28,7 @@ const ContactUs = () => {
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-4">
-        {cards?.map((x, index) => (
+        {data?.map((x, index) => (
           <div
             key={index}
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4"
@@ -55,14 +44,23 @@ const ContactUs = () => {
                 <p className="text-base">{x.description}</p>
               </div>
               <div className="px-6 py-4">
-                <a
-                  href={x.buttonLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 text-lg"
-                >
-                  {x.buttonName}
-                </a>
+                {index === 0 || index === 1 ? (
+                  <a
+                    href={x.buttonLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 text-lg"
+                  >
+                    {x.buttonName}
+                  </a>
+                ) : (
+                  <button
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 text-lg"
+                    onClick={() => navigate(x.buttonLink)}
+                  >
+                    {x.buttonName}
+                  </button>
+                )}
               </div>
             </div>
           </div>

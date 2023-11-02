@@ -1,16 +1,6 @@
 const BlogDetail = () => {
-  return (
-    <div className="mx-2 px-5">
-      <div className="container mx-auto text-white space-y-5">
-        <h1 className="text-center text-2xl my-3">Evden Eve Nakliyat</h1>
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
-          <div className="md:col-span-5 space-y-3">
-            <img
-              className="w-full rounded-md shadow-sm shadow-white"
-              src="https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/evden-eve-nakliyat.jpg"
-              alt=""
-            />
-            <p>
+  const card = {
+    name: ` <p>
               Atasayar Nakliyat ekibi olarak, müşterilerimizle birlikte
               taşımacılık işlemi için kararlaştırdığımız randevu gününde
               eksperlerimiz evinize gelerek yada Whatsapp ile yolladığınız
@@ -64,7 +54,23 @@ const BlogDetail = () => {
             </p>
             <p>
               Detaylı bilgi almak isterseniz bizimle iletişim kurabilirsiniz.
-            </p>
+            </p>`,
+  };
+  const createMarkup = () => {
+    return { __html: card.name };
+  };
+  return (
+    <div className="mx-2 px-5">
+      <div className="container mx-auto text-white space-y-5">
+        <h1 className="text-center text-2xl my-3">Evden Eve Nakliyat</h1>
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
+          <div className="md:col-span-5 space-y-3">
+            <img
+              className="w-full rounded-md shadow-sm shadow-white"
+              src="https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/evden-eve-nakliyat.jpg"
+              alt=""
+            />
+            <div dangerouslySetInnerHTML={createMarkup()} />
           </div>
           <div className="md:col-span-2 space-y-3">
             <div className="border-2 rounded-lg border-gray-800 p-4">

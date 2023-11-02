@@ -1,28 +1,23 @@
+import { useState } from "react";
 import { MdLocationPin } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { getDatas } from "../../../config/config";
+import { useEffect } from "react";
 
 const IlceHizmetleri = () => {
-  const ilceler = [
-    {
-      name: "Develi",
-      url: "#",
-    },
-    {
-      name: "Yahyalı",
-      url: "#",
-    },
-    {
-      name: "Melikgazi",
-      url: "#",
-    },
-    {
-      name: "Kocasinan",
-      url: "#",
-    },
-    {
-      name: "Talas",
-      url: "#",
-    },
-  ];
+  const [data, setData] = useState(null);
+  const navigate = useNavigate();
+  async function fetchDatas() {
+    try {
+      const datas = await getDatas("ilcehizmet");
+      setData(datas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
 
   return (
     <article className="md:flex justify-between md:space-y-0 space-y-3">
@@ -41,15 +36,15 @@ const IlceHizmetleri = () => {
           sunmaktayız.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {ilceler?.map((ilce, index) => (
-            <a
+          {data?.map((ilce, index) => (
+            <button
               key={index}
-              href={ilce.url}
-              className="flex items-center hover:text-rose-600"
+              className="flex items-center hover:text-rose-600 cursor-pointer"
+              onClick={() => navigate(`/${ilce.slug}`)}
             >
               <MdLocationPin />
-              <span>{ilce.name} Evden Eve Nakliyat</span>
-            </a>
+              <span>{ilce.name}</span>
+            </button>
           ))}
         </div>
       </div>

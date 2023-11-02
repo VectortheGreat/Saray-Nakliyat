@@ -1,7 +1,43 @@
+import { useState } from "react";
 import { FaPhone, FaWhatsapp } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 
 const ContactComp = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("/sendEmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === "Email sent successfully") {
+          console.log(data);
+        } else {
+          console.error("Error:", data);
+        }
+      });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(formData);
   return (
     <section className="mt-3 px-5">
       <div className="text-center space-y-4">
@@ -19,20 +55,12 @@ const ContactComp = () => {
           </div>
           <div className="px-4 pb-3 flex flex-col">
             <a
-              href="tel:0533333333"
+              href="tel:05323764984"
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg hover:text-pink-700"
             >
-              0533 333 33 33
-            </a>
-            <a
-              href="tel:0533333333"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg hover:text-pink-700"
-            >
-              0533 333 33 33
+              0532 376 49 84
             </a>
           </div>
         </div>
@@ -51,15 +79,7 @@ const ContactComp = () => {
               rel="noopener noreferrer"
               className="text-lg hover:text-pink-700"
             >
-              0533 333 33 33
-            </a>
-            <a
-              href="tel:0533333333"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg hover:text-pink-700"
-            >
-              0533 333 33 33
+              0532 376 49 84
             </a>
           </div>
         </div>
@@ -73,12 +93,12 @@ const ContactComp = () => {
           </div>
           <div className="px-4 pb-3 flex flex-col">
             <a
-              href="tel:0533333333"
+              href="https://maps.app.goo.gl/qzRaqu5vRnCradFU7"
               target="_blank"
               rel="noopener noreferrer"
               className="text-lg hover:text-pink-700"
             >
-              Hunat Mah. Seyitgazi Gaziler Sk. No:5 Melikgazi/KAYSERİ
+              Aşağıeverek, Cumhuriyet Cd. No:175, 38400 Develi/Kayseri
             </a>
           </div>
         </div>
@@ -87,7 +107,7 @@ const ContactComp = () => {
       <article className="flex flex-col md:flex-row space-y-3 md:space-x-3">
         <form
           className="bg-gray-800 p-4 md:p-8 rounded shadow-md w-full md:w-1/3 text-black"
-          //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           <h2 className="text-2xl font-bold mb-4 text-white">Başvuru Formu</h2>
           <div className="mb-4">
@@ -99,6 +119,7 @@ const ContactComp = () => {
               id="name"
               name="name"
               className="w-full p-2 border rounded"
+              onChange={handleChange}
               required
             />
           </div>
@@ -114,6 +135,7 @@ const ContactComp = () => {
               id="phone"
               name="phone"
               className="w-full p-2 border rounded"
+              onChange={handleChange}
               required
             />
           </div>
@@ -129,6 +151,7 @@ const ContactComp = () => {
               id="email"
               name="email"
               className="w-full p-2 border rounded"
+              onChange={handleChange}
               required
             />
           </div>
@@ -143,6 +166,7 @@ const ContactComp = () => {
               id="message"
               name="message"
               className="w-full p-2 border rounded"
+              onChange={handleChange}
               required
             ></textarea>
           </div>
@@ -157,7 +181,7 @@ const ContactComp = () => {
           <iframe
             title="Google Haritalar"
             className="w-full h-64 md:h-96"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24920.461229525354!2d34.72668895188273!3d38.670543043459936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152a6f61dd439449%3A0db52e27000b43c54!2s2000%20Evler%2C%20Nev%C5%9Fehir%20Merkez%2FNev%C5%9Fehir!5e0!3m2!1str!2str!4v1685953273641!5m2!1str!2str"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199647.76676308972!2d35.2680290855852!3d38.56841620752895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152bbc7c43253271%3A0x82f62270204daa6!2sDeveli%20Saray%20Nak.!5e0!3m2!1sen!2str!4v1698929617827!5m2!1sen!2str"
           ></iframe>
         </div>
       </article>

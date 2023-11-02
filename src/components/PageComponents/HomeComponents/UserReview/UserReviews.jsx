@@ -1,40 +1,21 @@
+import { useState } from "react";
 import UserReviewCard from "./UserReviewCard";
+import { getDatas } from "../../../../config/config";
+import { useEffect } from "react";
 
 const UserReviews = () => {
-  const cards = [
-    {
-      name: "Yunus Güneş",
-      description:
-        "Merhabalar, Söz verdikleri tarihte taşıdılar. Taşınma sırasında sürekli iletişim halindeydik. Eşyalarım aynı gün içinde taşınacağı bölgeye ulaştı. Yine taşınma işlemim olursa aynı firmayı değerlendiriyor olurdum. Teşekkürler, İyi Çalışmalar.",
-      gender: "male",
-      date: "10 Ekim 2023",
-      score: 5,
-    },
-    {
-      name: "Büşra Yazıcı",
-      description:
-        "Konuşulan gün ve saatinde eşyalarım hiç zarar görmeden teslim aldım. Çalışanların samimiyeti ve eşyalara zarar vermemek için ellerinden geleni yapmaları harikaydı. Çok memnun kaldım teşekkürler.",
-      gender: "female",
-      date: "1 Haziran 2023",
-      score: 4,
-    },
-    {
-      name: "Sezer Akbulut",
-      description:
-        "Gayet güzel bir taşma oldu benim için. Açıkçası bu kadar zor bir işin bu kadar özenli yapılması son derece güzel. Ben çok memnun kaldım.",
-      gender: "male",
-      date: "6 Ocak 2023",
-      score: 5,
-    },
-    {
-      name: "Mehmet Bayrıl",
-      description:
-        "Bir daha taşınırsam kime taşıtacağımı artık biliyorum. Güler yüzlü ve işinin ehli ustalar. Sorunsuz bir taşınma oldu. Kendilerine teşekkür ediyorum. Kesinlikle herkese tavsiye ediyorum.",
-      gender: "male",
-      date: "28 Temmuz 2023",
-      score: 4,
-    },
-  ];
+  const [data, setData] = useState(null);
+  async function fetchDatas() {
+    try {
+      const datas = await getDatas("UserReviews");
+      setData(datas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
   return (
     <section>
       <div className="text-center space-y-4">
@@ -45,7 +26,7 @@ const UserReviews = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-3 my-3">
-        {cards?.map((card, index) => (
+        {data?.map((card, index) => (
           <UserReviewCard card={card} key={index}></UserReviewCard>
         ))}
       </div>

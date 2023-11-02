@@ -1,51 +1,22 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDatas } from "../../../config/config";
+import { useEffect } from "react";
 
 const PraticalTransportationInfos = () => {
+  const [data, setData] = useState(null);
   const navigate = useNavigate();
-  const cards = [
-    {
-      name: "Paketlenmemesi Gereken Eşyalar",
-      description:
-        "Taşınma gününden önce paketlenmesi gereken eşyalar hakkında daha detaylı bilgi almak için tıklayınız.",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-6.jpg",
-    },
-    {
-      name: "Tasarruf Sağlayacak Fikirler",
-      description:
-        "Taşınma sırasında tasarruf sağlayacak bilgiler almak için tıklayınız",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-5.jpg",
-    },
-    {
-      name: "En Çok Gerekli Aletler",
-      description:
-        "Taşınma sırasında sizin işinize çok gerekli olacak aletler hakkında bilgi almak için tıklayınız.",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-4.jpg",
-    },
-    {
-      name: "Kırılacak Eşyalar Nasıl Paketlenir?",
-      description:
-        "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-3.jpg",
-    },
-    {
-      name: "Kırılacak Eşyalar Nasıl Paketlenir?",
-      description:
-        "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-2.jpg",
-    },
-    {
-      name: "Kırılacak Eşyalar Nasıl Paketlenir?",
-      description:
-        "Kırılacak eşyalara zarar gelmeden nakil etmenin yöntemlerini öğrenmek için tıklayınız.",
-      imageUrl:
-        "https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/blog-1.jpg",
-    },
-  ];
+  async function fetchDatas() {
+    try {
+      const datas = await getDatas("PraticalTransportationInfos");
+      setData(datas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
   return (
     <article>
       <div className="text-center space-y-4">
@@ -57,7 +28,7 @@ const PraticalTransportationInfos = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-3 my-3">
-        {cards?.map((x, index) => (
+        {data?.map((x, index) => (
           <div
             key={index}
             className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-gray-800 text-center"
@@ -67,11 +38,14 @@ const PraticalTransportationInfos = () => {
               alt="image"
               className="w-full"
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
+              onClick={() => {
+                navigate(`/`);
+              }}
             />
             <div
               className="px-6 py-4 cursor-pointer"
               onClick={() => {
-                navigate("/blog/1");
+                navigate(`/blog/${x.slug}`);
               }}
             >
               <div className="font-bold text-xl mb-2">{x.name}</div>

@@ -1,73 +1,22 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDatas } from "../../../../config/config";
 
 const ProfessionalService = () => {
+  const [data, setData] = useState(null);
   const navigate = useNavigate();
-  const cards = [
-    {
-      name: "Evden Eve Nakliyat",
-      description:
-        "Yılların vermiş olduğu tecrübemiz ile evinizi profesyonelce sigortalı olara taşıyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Ofis Taşıma",
-      description:
-        "Ofis ve büro taşımacılığında tüm eşyalarınızı özenle paketleyip sorunsuz hizmet sunuyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Asansörlü Nakliyat",
-      description:
-        "Katınız kaçınca kat olursa olsun, son teknoloji modüler asansörümüz ile asansörlü evinizi taşıyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Parça Eşya Taşıma",
-      description:
-        "Taşınacak bir kaç parça eşyanız mı var ? En uygun fiyatlara, zamanında teslimat garantisi ile hizmet alın.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Eşya Depolama",
-      description:
-        "Eşyalarınızı güvende tutacak yer mi arıyorsunuz ? Sigortalı 7/24 kameralı depolarımız hizmetinize hazır.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Şehir İçi Nakliye",
-      description:
-        "Taşıma türü ne olursa olsun, şehir içi taşımacılık isteğinize profesyonelce nakliye hizmeti veriyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Şehirler Arası Nakliye",
-      description:
-        "Şehirler arası nakliyede garantili, zamanında teslimat ve uygun fiyat ile hizmet sunuyoruz.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-    {
-      name: "Ücretsiz Ekspertiz",
-      description:
-        "Taşınacak eşyalarınızı yerinde inceleyip, en iyi hizmeti vermek için ücretsiz ekspertiz hizmetimi ile kapınızdayız.",
-      imageUrl:
-        "https://www.a1nakliyat.com/wp-content/uploads/2022/02/evden-eve-nakliyat-1024x682.jpg",
-      link: "https://www.youtube.com",
-    },
-  ];
+  async function fetchDatas() {
+    try {
+      const datas = await getDatas("ProfessionalService");
+      setData(datas);
+    } catch (error) {
+      console.error("Mesajları alma hatası:", error);
+    }
+  }
+  useEffect(() => {
+    fetchDatas();
+  }, []);
   return (
     <section>
       <div className="text-center space-y-4">
@@ -78,7 +27,7 @@ const ProfessionalService = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-3 my-3">
-        {cards?.map((card, index) => (
+        {data?.map((card, index) => (
           <div
             key={index}
             className="w-full rounded overflow-hidden shadow-lg bg-gray-800 flex text-white my-3"
@@ -92,7 +41,7 @@ const ProfessionalService = () => {
             <div
               className="p-4 w-full cursor-pointer"
               onClick={() => {
-                navigate("/blog/1");
+                navigate(`/blog/${card.slug}`);
               }}
             >
               <h2 className="font-bold text-base mb-2">{card.name}</h2>

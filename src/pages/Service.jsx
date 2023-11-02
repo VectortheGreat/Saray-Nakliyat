@@ -2,9 +2,12 @@ import ServiceComp from "../components/PageComponents/ServiceComponents/ServiceC
 
 const Service = () => {
   return (
-    <div className="container mx-auto text-white space-y-5">
-      <ServiceComp></ServiceComp>
-    </div>
+    <>
+      <h1 className="text-center text-2xl bg-slate-200 p-2">Hizmetlerimiz</h1>
+      <div className="container mx-auto text-white space-y-5">
+        <ServiceComp></ServiceComp>
+      </div>
+    </>
   );
 };
 

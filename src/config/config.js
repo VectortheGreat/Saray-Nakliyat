@@ -1,18 +1,44 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { get, getDatabase, ref } from "firebase/database";
+
 const config = {
   firebaseConfig: {
-    apiKey: "AIzaSyC9Fmg7Xpwls3UIOUVdbfmzLq6CimzJ-ls",
-    authDomain: "saray-nakliyat.firebaseapp.com",
-    projectId: "saray-nakliyat",
-    storageBucket: "saray-nakliyat.appspot.com",
-    messagingSenderId: "743041601532",
-    appId: "1:743041601532:web:66712a9e90b1e260db6c79",
-    measurementId: "G-R7BB6JJ45P",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
   },
 };
 
 const appFBConfig = initializeApp(config.firebaseConfig);
+const database = getDatabase(appFBConfig);
+export { database };
 export const authFBConfig = getAuth(appFBConfig);
 export default appFBConfig;
+
+export const getDatas = async (key) => {
+  return new Promise((resolve, reject) => {
+    const keyRef = ref(database, key);
+    const datas = [];
+    get(keyRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            datas.push(data);
+          });
+          resolve(datas);
+        } else {
+          resolve([]);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
