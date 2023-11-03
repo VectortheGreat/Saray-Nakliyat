@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
 import "slick-carousel/slick/slick.css";
@@ -25,12 +31,11 @@ function App() {
     },
     currentUser: auth.currentUser,
   };
-  console.log(authInfoPayload);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authInfo(authInfoPayload));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <Router>
       <Header />
@@ -41,7 +46,8 @@ function App() {
         <Route path="/iletisim" element={<Contact />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/1" element={<BlogDetail />} />
+        {/* <Route path={`/blog/${slug}`} element={<BlogDetail />} /> */}
+        <Route path="/blog/:slug" element={<BlogDetail />} />
       </Routes>
       <Footer></Footer>
       <CopyRight></CopyRight>

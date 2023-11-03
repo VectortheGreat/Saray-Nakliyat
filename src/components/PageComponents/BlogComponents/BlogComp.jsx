@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDatas } from "../../../config/config";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setSlug } from "../../../redux/authSlice";
 
 const BlogComp = () => {
   const [datas, setDatas] = useState(null);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   async function fetchDatas() {
     try {
       const fetchedDatas = await getDatas();
@@ -16,10 +19,16 @@ const BlogComp = () => {
       console.error("Mesajları alma hatası:", error);
     }
   }
+
+  const navigatePage = (e) => {
+    navigate(`/blog/${e.slug}`);
+    dispatch(setSlug(e.slug));
+  };
   console.log("Veriler: ", datas);
   useEffect(() => {
     fetchDatas();
   }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mx-3">
       {datas?.map((e, i) => (
@@ -39,7 +48,7 @@ const BlogComp = () => {
               </p>
               <button
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                onClick={() => navigate(`/${e.slug}`)}
+                onClick={() => navigatePage(e)}
               >
                 Detay için tıklayınız
                 <svg

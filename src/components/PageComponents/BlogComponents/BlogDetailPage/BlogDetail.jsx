@@ -1,4 +1,37 @@
+import { useParams } from "react-router-dom";
+import { database, getDatas } from "../../../../config/config";
+import { get, ref } from "firebase/database";
+import { useState } from "react";
+import { useEffect } from "react";
+
 const BlogDetail = () => {
+  const { slug } = useParams();
+  const [slugs, setSlugs] = useState([]);
+  const fetchDataBase = async () => {
+    const databaseRef = ref(database);
+    get(databaseRef).then((snapshot) => {
+      const keys = [];
+      const slugsArray = [];
+      snapshot.forEach((childSnapshot) => {
+        keys.push(childSnapshot.val());
+      });
+      keys.map((x, i) => {
+        if (i === 1 || i === 3) {
+          x.map((y) => {
+            slugsArray.push(y.slug);
+          });
+        }
+      });
+      const filteredSlugs = slugsArray.filter((value) => value === slug);
+      setSlugs(filteredSlugs[0]);
+    });
+    console.log(true);
+  };
+  useEffect(() => {
+    fetchDataBase();
+  }, []);
+  console.log(slugs);
+
   const card = {
     name: ` <p>
               Atasayar Nakliyat ekibi olarak, müşterilerimizle birlikte
@@ -70,6 +103,8 @@ const BlogDetail = () => {
               src="https://kardelennakliyat.com.tr/wp-content/uploads/2021/01/evden-eve-nakliyat.jpg"
               alt=""
             />
+            <h1 className="text-xl font-bold">OFİS ve KURUMSAL TAŞIMACILIK</h1>
+
             <div dangerouslySetInnerHTML={createMarkup()} />
           </div>
           <div className="md:col-span-2 space-y-3">
