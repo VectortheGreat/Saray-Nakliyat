@@ -13,7 +13,6 @@ const ProfessionalPackaging = () => {
       console.error("Mesajları alma hatası:", error);
     }
   }
-  console.log(data);
 
   const setDatas = async () => {
     const messageRef = ref(database, "ProfessionalPackaging");
@@ -556,7 +555,7 @@ const ProfessionalPackaging = () => {
   };
   useEffect(() => {
     fetchDatas();
-    setDatas();
+    //setDatas();
   }, []);
 
   return (

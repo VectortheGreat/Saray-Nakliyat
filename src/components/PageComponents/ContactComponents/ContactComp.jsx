@@ -23,7 +23,7 @@ const ContactComp = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data === "Email sent successfully") {
-          console.log(data);
+          //console.log(data);
         } else {
           console.error("Error:", data);
         }
@@ -37,7 +37,6 @@ const ContactComp = () => {
       [name]: value,
     });
   };
-  console.log(formData);
   return (
     <section className="mt-3 px-5">
       <div className="text-center space-y-4">

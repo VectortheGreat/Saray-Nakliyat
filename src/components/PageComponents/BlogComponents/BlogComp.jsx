@@ -24,7 +24,6 @@ const BlogComp = () => {
     navigate(`/blog/${e.slug}`);
     dispatch(setSlug(e.slug));
   };
-  console.log("Veriler: ", datas);
   useEffect(() => {
     fetchDatas();
   }, []);

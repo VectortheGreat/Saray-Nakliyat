@@ -13,20 +13,15 @@ const authSlice = createSlice({
   reducers: {
     authInfo: (state, action) => {
       state.auth = action.payload;
-      //console.log("Auth: ", state.auth);
     },
     tokenInfo: (state, action) => {
       state.token = action.payload;
-      //console.log("Token: ", state.token);
     },
     loginModeToggle: (state) => {
       state.loginMode = !state.loginMode;
-      //console.log("Login Mode: ", state.loginMode);
     },
     setSlug: (state, action) => {
       state.slug = action.payload;
-      console.log(state.slug);
-      console.log(action.payload);
     },
   },
 });

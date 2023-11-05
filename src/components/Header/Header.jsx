@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { IoIosPeople } from "react-icons/io";
-import { MdHomeRepairService } from "react-icons/md";
 import { HiMail } from "react-icons/hi";
 
 const Header = () => {
@@ -76,17 +75,6 @@ const Header = () => {
             <span className="flex items-center space-x-1">
               <IoIosPeople></IoIosPeople>
               <p>Blog</p>
-            </span>
-          </button>
-          <button
-            className="text-white hover:text-blue-300 transition duration-300 ease-in-out"
-            onClick={() => {
-              navigate("/hizmetlerimiz");
-            }}
-          >
-            <span className="flex items-center space-x-1">
-              <MdHomeRepairService></MdHomeRepairService>
-              <p>Hizmetlerimiz</p>
             </span>
           </button>
           <button

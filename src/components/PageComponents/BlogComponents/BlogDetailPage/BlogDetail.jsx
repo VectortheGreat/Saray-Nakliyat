@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { database } from "../../../../config/config";
 import { get, ref } from "firebase/database";
 import { useState } from "react";
@@ -9,6 +9,7 @@ const BlogDetail = () => {
   const { slug } = useParams();
   const [data, setData] = useState("");
   const [otherBlogs, setOtherBlogs] = useState([]);
+  const navigate = useNavigate();
   const [randomBlogNo, setRandomBlogNo] = useState("");
   const fetchDataBase = async () => {
     const databaseRef = ref(database);
@@ -27,7 +28,6 @@ const BlogDetail = () => {
       });
       const filteredSlugs = dataArray.filter((value) => value.slug === slug);
       setData(filteredSlugs[0]);
-      // console.log(filteredSlugs[0]);
       const generateRandomNumbers = () => {
         let randomNum = [];
         while (randomNum.length < 4) {
@@ -35,8 +35,6 @@ const BlogDetail = () => {
             Math.floor(Math.random() * dataArray.length - 1) + 1;
           let randomSlug = dataArray[randomNumber].slug;
           if (randomSlug === slug) {
-            console.log(randomSlug);
-            console.log(randomNumber);
             return generateRandomNumbers();
           }
           if (!randomNum.includes(randomNumber)) {
@@ -44,7 +42,6 @@ const BlogDetail = () => {
           }
         }
         setRandomBlogNo(randomNum);
-        console.log(dataArray);
         setOtherBlogs(dataArray);
       };
       generateRandomNumbers();
@@ -52,9 +49,7 @@ const BlogDetail = () => {
   };
   useEffect(() => {
     fetchDataBase();
-  }, []);
-
-  // console.log(otherBlogs[randomBlogNo[1]].name);
+  }, [slug]);
 
   const createMarkup = () => {
     return { __html: data.longDescrition };
@@ -81,10 +76,13 @@ const BlogDetail = () => {
               <ul className="mt-4">
                 {otherBlogs?.map((value, index) => (
                   <li className="mb-2" key={index}>
-                    <button className="hover:text-pink-600">
-                      {/* {value[randomBlogNo[index]].name} */}
+                    {/* <button
+                      className="hover:text-pink-600"
+                      // onClick={() => navigate(`http://localhost:5173blog/${value.slug}`)}
+                    >
                       {value.name}
-                    </button>
+                    </button> */}
+                    <Link to={`/blog/${value.slug}`}> {value.name}</Link>
                   </li>
                 ))}
                 {/* {randomBlogNo !== null && otherBlogs[randomBlogNo[1]] ? (
@@ -92,31 +90,6 @@ const BlogDetail = () => {
                       {otherBlogs[randomBlogNo[1]].name}
                     </a>
                   ) : null} */}
-              </ul>
-            </div>
-            <div className="border-2 rounded-lg border-gray-800 p-4">
-              <h2 className="text-xl font-semibold">Nakliyat Bilgiler</h2>
-              <ul className="mt-4">
-                <li className="mb-2">
-                  <a href="/" className="hover:text-pink-600">
-                    Örnek Nakliyat Bilgiler
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="border-2 rounded-lg border-gray-800 p-4">
-              <h2 className="text-xl font-semibold">Sayfalar</h2>
-              <ul className="mt-4">
-                <li className="mb-2">
-                  <a href="/" className="hover:text-pink-600">
-                    Anasayfa
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="/" className="hover:text-pink-600">
-                    İletişim
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
